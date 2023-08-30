@@ -1,4 +1,4 @@
-const DIR = parseInt(parseInt(process.argv[3]));
+const DIR = parseInt(process.argv[3]);
 
 let arr = new Array(parseInt(process.argv[2]))
     .fill(undefined)
