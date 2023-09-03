@@ -1,17 +1,19 @@
-const arr = [1, 5, 3, 11, 7, -2, -1];
-
-console.log(arr);
-
-for (let i = 0; i < arr.length - 1; ++i) {
-    let lowestValIndex = i;
-    for (let j = i; j < arr.length; ++j) {
-        if (arr[j] < arr[lowestValIndex]) {
-            lowestValIndex = j;
+async function selectionSort(arr, order, processCb) {
+    for (let i = 0; i < arr.length - 1; ++i) {
+        // When the order is ascending it is the lowestValIndex, otherwise it is the highestValIndex
+        let lowestOrHighestValIndex = i;
+        for (let j = i; j < arr.length; ++j) {
+            if (order===0 ? arr[j] < arr[lowestOrHighestValIndex] : arr[j] > arr[lowestOrHighestValIndex]) {
+                lowestOrHighestValIndex = j;
+            }
         }
+        const temp = arr[i];
+        arr[i] = arr[lowestOrHighestValIndex];
+        arr[lowestOrHighestValIndex] = temp;
+        await processCb();
     }
-    const temp = arr[i];
-    arr[i] = arr[lowestValIndex];
-    arr[lowestValIndex] = temp;
 }
 
-console.log(arr);
+export {
+    selectionSort,
+}
