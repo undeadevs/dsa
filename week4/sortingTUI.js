@@ -9,6 +9,7 @@ import blessed from "neo-blessed";
 import { bubbleSort } from '../week3/practice/bubbleSort.js';
 import { selectionSort } from '../week3/practice/selectionSort.js';
 import { insertionSort } from '../week3/practice/insertionSort.js';
+import { quickSort } from '../week6/quickSort.js';
 
 // Create a screen object.
 const screen = blessed.screen({
@@ -97,6 +98,7 @@ let sortModes = {
     "Bubble": bubbleSort,
     "Selection": selectionSort,
     "Insertion": insertionSort,
+    "Quick": quickSort,
 };
 
 let isSorting = false;
@@ -118,8 +120,8 @@ function rerenderMenus() {
 }
 
 function rerenderItems() {
-    negativeBox.setContent(arr.map(number => number > 0 ? "" : "█".repeat(-number)).join("\n"));
-    positiveBox.setContent(arr.map(number => number < 0 ? "" : "█".repeat(number)).join("\n"));
+    negativeBox.setContent(arr.map(number => number > 0 ? "" : "█".repeat(number.toString().length - (number) - 1) + number).join("\n"));
+    positiveBox.setContent(arr.map(number => number < 0 ? "" : number + "█".repeat(number.toString().length - (-number) - 1)).join("\n"));
 
     negativeBox.height = arr.length;
     positiveBox.height = arr.length;
@@ -182,18 +184,24 @@ screen.key('f6', async () => {
     if (isSorting) return;
     let startTime = Date.now();
     isSorting = true;
-    await sortModes[Object.keys(sortModes)[sortMode]](arr, sortOrder, async () => {
+    const extraArgs = [];
+    const sortModeStr = Object.keys(sortModes)[sortMode];
+    if (sortModeStr === "Quick") {
+        extraArgs.push(0);
+        extraArgs.push(arr.length - 1);
+    }
+    await sortModes[sortModeStr](arr, ...extraArgs, sortOrder, async () => {
         rerenderItems();
         await new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve();
             }, 1);
         });
-    })
+    });
     isSorting = false;
     rerenderItems();
 
-    message.display("Sorted in: "+(Date.now() - startTime)+"ms", 0, ()=>{
+    message.display("Sorted in: " + (Date.now() - startTime) + "ms", 0, () => {
         screen.render();
     });
 });
