@@ -31,21 +31,21 @@ Menu: `
         switch (choice) {
             case 1:
                 console.log(
-`+-------Algo 1-------+`
+`+------PreOrder------+`
                 );
                 bst.algo1Print();
                 console.log(
 `+--------------------+`
                 );
 console.log(
-`+-------Algo 2-------+`
+`+------In Order------+`
                 );
                 bst.algo2Print();
                 console.log(
 `+--------------------+`
                 );
 console.log(
-`+-------Algo 3-------+`
+`+-----Post Order-----+`
                 );
                 bst.algo3Print();
                 console.log(
