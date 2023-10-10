@@ -40,7 +40,7 @@ class BST {
     add(key) {
         if (!this.#root) {
             this.#root = new BSTNode(key);
-            return;
+            return true;
         }
         let current = this.#root;
         while (current) {
