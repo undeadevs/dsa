@@ -174,7 +174,7 @@ class BST {
         this.#root = null;
     }
 
-    algo1Print(root) {
+    preOrderPrint(root) {
         if (!root) {
             if (!this.#root) {
                 console.log("<Empty>");
@@ -183,11 +183,11 @@ class BST {
             root = this.#root;
         }
         console.log(root.getKey())
-        if (root.getLeft()) this.algo1Print(root.getLeft());
-        if (root.getRight()) this.algo1Print(root.getRight());
+        if (root.getLeft()) this.preOrderPrint(root.getLeft());
+        if (root.getRight()) this.preOrderPrint(root.getRight());
     }
 
-    algo2Print(root) {
+    inOrderPrint(root) {
         if (!root) {
             if (!this.#root) {
                 console.log("<Empty>");
@@ -195,12 +195,12 @@ class BST {
             }
             root = this.#root;
         }
-        if (root.getLeft()) this.algo2Print(root.getLeft());
+        if (root.getLeft()) this.inOrderPrint(root.getLeft());
         console.log(root.getKey())
-        if (root.getRight()) this.algo2Print(root.getRight());
+        if (root.getRight()) this.inOrderPrint(root.getRight());
     }
 
-    algo3Print(root) {
+    postOrderPrint(root) {
         if (!root) {
             if (!this.#root) {
                 console.log("<Empty>");
@@ -208,8 +208,8 @@ class BST {
             }
             root = this.#root;
         }
-        if (root.getLeft()) this.algo2Print(root.getLeft());
-        if (root.getRight()) this.algo2Print(root.getRight());
+        if (root.getLeft()) this.inOrderPrint(root.getLeft());
+        if (root.getRight()) this.inOrderPrint(root.getRight());
         console.log(root.getKey())
     }
 }

@@ -33,21 +33,21 @@ Menu: `
                 console.log(
 `+------PreOrder------+`
                 );
-                bst.algo1Print();
+                bst.preOrderPrint();
                 console.log(
 `+--------------------+`
                 );
 console.log(
 `+------In Order------+`
                 );
-                bst.algo2Print();
+                bst.inOrderPrint();
                 console.log(
 `+--------------------+`
                 );
 console.log(
 `+-----Post Order-----+`
                 );
-                bst.algo3Print();
+                bst.postOrderPrint();
                 console.log(
 `+--------------------+`
                 );
@@ -85,10 +85,15 @@ What number to delete? `
                 rl.once("line", (numberInput) => {
                     const number = parseInt(numberInput);
 
-                    bst.remove(number);
-                    console.log(
+                    const success =bst.remove(number);
+                    if(success) console.log(
 `+---------------------+
 Removed ${number}!
++---------------------+`
+                    );
+                    else console.log(
+`+---------------------+
+Can't found ${number}!
 +---------------------+`
                     );
                     main();
@@ -104,10 +109,18 @@ How many to generate? `
                     const number = parseInt(numberInput);
 
                     for(let i=0; i<number; ++i){
-                        let success = bst.add(Math.floor(Math.random()*100)-50);
+                        let numberToAdd = Math.floor(Math.random()*100)-50;
+                        let success = bst.add(numberToAdd);
                         while(!success){
-                            success = bst.add(Math.floor(Math.random()*100)-50);
+                            numberToAdd = Math.floor(Math.random()*100)-50;
+                            success = bst.add(numberToAdd);
                         }
+                    console.log(
+`+---------------------+
+Added ${numberToAdd}!
++---------------------+`
+                    ); 
+
                     }
                     console.log(
 `+---------------------+
