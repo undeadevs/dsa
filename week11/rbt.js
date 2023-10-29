@@ -126,16 +126,12 @@ class RBT {
         this.#root.setRed(false);
     }
 
-    remove(key){
-        // Unimplemented
-    }
-
     isExist(key) {
         let current = this.#root;
-        while(current){
-            if(key < current.getKey()){
+        while (current) {
+            if (key < current.getKey()) {
                 current = current.getLeft();
-            } else if (key > current.getKey()){
+            } else if (key > current.getKey()) {
                 current = current.getRight();
             } else {
                 return true;
@@ -160,6 +156,7 @@ class RBT {
         current.setParent(current.getLeft());
         current.getLeft().setRight(current);
         current.setLeft(temp);
+        if (temp) temp.setParent(current);
     }
 
     rotateToLeft(current) {
@@ -177,6 +174,7 @@ class RBT {
         current.setParent(current.getRight());
         current.getRight().setLeft(current);
         current.setRight(temp);
+        if (temp) temp.setParent(current);
     }
 
     clear() {
@@ -191,7 +189,7 @@ class RBT {
             }
             root = this.#root;
         }
-        console.log(root.getKey())
+        console.log(root.getKey(), root.isRed() ? "RED" : "BLACK")
         if (root.getLeft()) this.preOrderPrint(root.getLeft());
         if (root.getRight()) this.preOrderPrint(root.getRight());
     }
