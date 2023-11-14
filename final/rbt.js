@@ -171,7 +171,6 @@ class RBT {
                     current.getParent().getParent().setRed(true);
                     this.rotateToLeft(current.getParent().getParent())
                 }
-
             }
         }
         this.#root.setRed(false);

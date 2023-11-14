@@ -8,7 +8,7 @@ kamusRBTIDtoEN.add("jatuh", "fall", "He fell gracefully");
 kamusRBTIDtoEN.add("lebar", "wide", "Your knowledge on this subject is wide");
 kamusRBTIDtoEN.add("terbang", "fly", "The plane was flying through clouds");
 kamusRBTIDtoEN.add("hujan", "rain", "It's gonna rain soon!");
-kamusRBTIDtoEN.add("air", "water", "Can you pour that tea for me?");
+kamusRBTIDtoEN.add("air", "water", "Can you pour that water for me?");
 kamusRBTIDtoEN.add("memasak", "cook", "Her mother loves to cook chinese food");
 kamusRBTIDtoEN.add("makan", "eat", "I have an eating disorder");
 
